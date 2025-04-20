@@ -1,0 +1,31 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Note Taking App</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>📝 Note Taking App</h1>
+      <button id="toggle-theme">🌙 Dark Mode</button>
+    </header>
+
+    <div class="note-form">
+      <input type="text" id="title" placeholder="Title" />
+      <input type="text" id="tag" placeholder="#Tag" />
+      <textarea id="content" placeholder="Write your note here..."></textarea>
+      <button id="add-note">Add Note</button>
+    </div>
+
+    <input type="text" id="search" placeholder="Search notes..." />
+
+    <div id="notes" class="note-list"></div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

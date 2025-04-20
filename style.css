@@ -1,0 +1,114 @@
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+  background: #f0f0f5;
+  color: #222;
+  padding: 2rem;
+  transition: background 0.3s, color 0.3s;
+}
+
+.dark {
+  background: #121212;
+  color: #f1f1f1;
+}
+
+.container {
+  max-width: 700px;
+  margin: auto;
+  background: white;
+  border-radius: 10px;
+  padding: 2rem;
+  box-shadow: 0 0 20px rgba(0,0,0,0.1);
+}
+
+.dark .container {
+  background: #1e1e1e;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+#toggle-theme {
+  padding: 0.5rem 1rem;
+  border: none;
+  background: #333;
+  color: #fff;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.note-form input,
+.note-form textarea,
+#search {
+  width: 100%;
+  margin-bottom: 1rem;
+  padding: 0.8rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+}
+
+.note-form textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+#add-note {
+  width: 100%;
+  background: #6a0dad;
+  color: #fff;
+  padding: 0.9rem;
+  border: none;
+  border-radius: 6px;
+  font-size: 1.1rem;
+  cursor: pointer;
+}
+
+.note-list {
+  margin-top: 2rem;
+}
+
+.note {
+  background: #e4e4ff;
+  padding: 1rem;
+  border-left: 6px solid #6a0dad;
+  margin-bottom: 1rem;
+  border-radius: 5px;
+  position: relative;
+}
+
+.note .delete {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: #ff5c5c;
+  border: none;
+  color: white;
+  border-radius: 50%;
+  width: 25px;
+  height: 25px;
+  cursor: pointer;
+}
+
+.dark .note {
+  background: #2a2a2a;
+  border-color: #bb86fc;
+}
+
+.dark #add-note {
+  background: #bb86fc;
+}
+
+.dark #toggle-theme {
+  background: #555;
+}
