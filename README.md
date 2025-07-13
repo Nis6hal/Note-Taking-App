@@ -1,4 +1,4 @@
-# Note Taking App
+# Note Taking App!!!
 
 A modern, offline-capable, and easy-to-use note taking app.
 
