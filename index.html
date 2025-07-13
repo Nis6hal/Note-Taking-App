@@ -6,26 +6,77 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Note Taking App</title>
   <link rel="stylesheet" href="style.css" />
+  <link rel="manifest" href="manifest.json" />
+  <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png" />
+  <link rel="icon" type="image/png" sizes="512x512" href="icon-512.png" />
 </head>
 <body>
-  <div class="container">
-    <header>
-      <h1>📝 Note Taking App</h1>
-      <button id="toggle-theme">🌙 Dark Mode</button>
-    </header>
-
-    <div class="note-form">
-      <input type="text" id="title" placeholder="Title" />
-      <input type="text" id="tag" placeholder="#Tag" />
-      <textarea id="content" placeholder="Write your note here..."></textarea>
-      <button id="add-note">Add Note</button>
+  <div class="app-layout">
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <h1>📝 Notes</h1>
+      </div>
+      <nav class="sidebar-nav">
+        <button id="all-notes" class="nav-btn active">All Notes</button>
+        <div id="tag-list" class="tag-list"></div>
+        <button id="settings-btn" class="nav-btn">⚙️ Settings</button>
+      </nav>
+      <footer class="sidebar-footer">
+        <button id="toggle-theme" aria-pressed="false" aria-label="Toggle dark mode">🌙</button>
+      </footer>
+    </aside>
+    <main class="main-content">
+      <header class="main-toolbar">
+        <input type="text" id="search" placeholder="Search notes..." aria-label="Search notes" />
+        <select id="sort-notes" aria-label="Sort notes">
+          <option value="date-desc">Newest</option>
+          <option value="date-asc">Oldest</option>
+          <option value="title-asc">Title A-Z</option>
+          <option value="title-desc">Title Z-A</option>
+          <option value="tag-asc">Tag A-Z</option>
+          <option value="tag-desc">Tag Z-A</option>
+        </select>
+        <button id="export-notes" aria-label="Export notes">Export</button>
+        <input type="file" id="import-notes" aria-label="Import notes" accept=".json,.csv" style="display:none" />
+        <button id="import-notes-btn" aria-label="Import notes">Import</button>
+      </header>
+      <div id="edit-indicator" class="edit-indicator" style="display:none">Editing Note...</div>
+      <div id="empty-state" class="empty-state" style="display:none" aria-live="polite">No notes yet. Start by adding your first note!</div>
+      <div id="notes" class="note-list" aria-live="polite"></div>
+    </main>
+    <button id="fab" class="fab" aria-label="Add note">＋</button>
+    <div id="modal-bg" class="modal-bg" style="display:none"></div>
+    <div id="note-modal" class="note-modal" style="display:none" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      <form class="note-form" id="note-form" autocomplete="off" aria-label="Add or edit note">
+        <h2 id="modal-title">Add Note</h2>
+        <div class="form-group">
+          <label for="title">Title</label>
+          <input type="text" id="title" name="title" placeholder="Title" required />
+        </div>
+        <div class="form-group">
+          <label for="tag">Tag</label>
+          <input type="text" id="tag" name="tag" placeholder="#Tag" pattern="#?\w+" aria-describedby="tag-desc" />
+          <span id="tag-desc" class="sr-only">Tag should start with # and contain only letters or numbers</span>
+        </div>
+        <div class="form-group">
+          <label for="content">Content</label>
+          <textarea id="content" name="content" placeholder="Write your note here..." required></textarea>
+        </div>
+        <div class="form-actions">
+          <button type="submit" id="add-note">Add Note</button>
+          <button type="button" id="update-note" style="display:none">Update Note</button>
+          <button type="button" id="cancel-edit">Cancel</button>
+        </div>
+      </form>
     </div>
-
-    <input type="text" id="search" placeholder="Search notes..." />
-
-    <div id="notes" class="note-list"></div>
   </div>
-
   <script src="script.js"></script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('service-worker.js');
+      });
+    }
+  </script>
 </body>
 </html>
